@@ -20,11 +20,11 @@ public class WorkerController {
         return ResponseEntity.ok(workerService.getWorkerDashboard());
     }
 
-    @PostMapping("/profile")
-    public ResponseEntity<WorkerProfile> createOrUpdateProfile(@RequestBody WorkerProfileDto profileDto) {
-        WorkerProfile updatedProfile = workerService.createOrUpdateProfile(profileDto);
-        return ResponseEntity.ok(updatedProfile);
-    }
+//    @PostMapping("/profile")
+//    public ResponseEntity<WorkerProfile> createOrUpdateProfile(@RequestBody WorkerProfileDto profileDto) {
+//        WorkerProfile updatedProfile = workerService.createOrUpdateProfile(profileDto);
+//        return ResponseEntity.ok(updatedProfile);
+//    }
 
     @GetMapping("/profile")
     public ResponseEntity<WorkerProfile> getProfile() {
@@ -50,4 +50,5 @@ public class WorkerController {
         workerService.updateAccountSettings(accountSettings);
         return ResponseEntity.ok("Account settings updated successfully.");
     }
+
 }
