@@ -1,5 +1,6 @@
 package com.job.portals.RozgarBazar.model;
 
+import com.job.portals.RozgarBazar.entity.ShiftTimings;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

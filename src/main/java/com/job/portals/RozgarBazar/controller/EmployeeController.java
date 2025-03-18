@@ -25,9 +25,9 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/post")
-    public ResponseEntity<EmployeeProfile> createProfile(@RequestBody EmployeeProfileDto empProfile) {
-        EmployeeProfile updatedProfile = employeeService.createProfile(empProfile);
-        return ResponseEntity.ok(updatedProfile);
+    public ResponseEntity<Employee> createProfile(@RequestBody EmployeeProfileDto empProfile) {
+        Employee employee = employeeService.createProfile(empProfile);
+        return ResponseEntity.ok(employee);
     }
 
 //    @PostMapping("/post")
