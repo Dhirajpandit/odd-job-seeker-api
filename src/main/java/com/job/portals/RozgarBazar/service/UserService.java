@@ -46,7 +46,7 @@ public class UserService {
 
     public User updateUser(Long id, UserDto updatedUser) {
         User existingUser = getUserById(id);
-       /* existingUser.setFirstName(updatedUser.getFirstName());
+        /*existingUser.setFirstName(updatedUser.getFirstName());
         existingUser.setLastName(updatedUser.getLastName());
         existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
         existingUser.setProfilePictureUrl(updatedUser.getProfilePictureUrl());

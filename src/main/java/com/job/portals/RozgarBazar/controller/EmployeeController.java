@@ -1,6 +1,8 @@
 package com.job.portals.RozgarBazar.controller;
 
 
+import com.job.portals.RozgarBazar.dto.Shortlisted;
+import com.job.portals.RozgarBazar.dto.ShortlistedDto;
 import com.job.portals.RozgarBazar.entity.Employee;
 import com.job.portals.RozgarBazar.model.EmployeeProfile;
 import com.job.portals.RozgarBazar.model.EmployeeProfileDto;
@@ -28,6 +30,14 @@ public class EmployeeController {
     public ResponseEntity<Employee> createProfile(@RequestBody EmployeeProfileDto empProfile) {
         Employee employee = employeeService.createProfile(empProfile);
         return ResponseEntity.ok(employee);
+    }
+
+    @Autowired
+    private EmployeeService employerService;
+
+    @PostMapping("/shortlist")
+    public ShortlistedDto shortlistWorker(@RequestBody Shortlisted request) {
+        return employerService.shortlistWorker(request);
     }
 
 //    @PostMapping("/post")

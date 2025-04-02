@@ -48,8 +48,8 @@ public class HiringService {
         // Create hiring record
         HiringWorker hiredWorker = new HiringWorker();
         hiredWorker.setEmployerId(request.getEmployerId());
-        hiredWorker.setJobId(request.getJobId());
-        hiredWorker.setWorkerId(request.getWorkerId());
+//        hiredWorker.setJobId(request.getJobId());
+//        hiredWorker.setWorkerId(request.getWorkerId());
         hiredWorker.setHireDate(LocalDateTime.now());
         hiredWorker.setActive(true);
 
