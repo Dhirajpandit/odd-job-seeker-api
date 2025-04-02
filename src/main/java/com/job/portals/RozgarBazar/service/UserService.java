@@ -3,6 +3,7 @@ package com.job.portals.RozgarBazar.service;
 import com.job.portals.RozgarBazar.dto.UserDto;
 import com.job.portals.RozgarBazar.entity.User;
 import com.job.portals.RozgarBazar.mapper.UserMapper;
+// import com.job.portals.RozgarBazar.mapper.UserMapper;
 import com.job.portals.RozgarBazar.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +27,10 @@ public class UserService {
 
     public User createUser(UserDto user) {
         log.info(":::: Created User Method Start ::::");
-        if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
-            log.warn(user.getPhoneNumber()+ " Mobile Number is already exists :::");
-            throw new IllegalArgumentException("Mobile Number is already exists, Please login !");
-        }
+        // if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
+        //     log.warn(user.getPhoneNumber()+ " Mobile Number is already exists :::");
+        //     throw new IllegalArgumentException("Mobile Number is already exists, Please login !");
+        // }
         User userEntity = userMapper.userDtoToUser(user);
         log.info("::: Creating User :::");
         return userRepository.save(userEntity);
