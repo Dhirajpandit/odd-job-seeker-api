@@ -4,14 +4,18 @@ package com.job.portals.RozgarBazar.controller;
 import com.job.portals.RozgarBazar.dto.Shortlisted;
 import com.job.portals.RozgarBazar.dto.ShortlistedDto;
 import com.job.portals.RozgarBazar.entity.Employee;
+import com.job.portals.RozgarBazar.entity.Job;
 import com.job.portals.RozgarBazar.model.EmployeeProfile;
 import com.job.portals.RozgarBazar.model.EmployeeProfileDto;
 import com.job.portals.RozgarBazar.model.WorkerProfile;
 import com.job.portals.RozgarBazar.model.WorkerProfileDto;
 import com.job.portals.RozgarBazar.service.EmployeeService;
+import com.job.portals.RozgarBazar.service.JobService;
+import com.job.portals.RozgarBazar.service.WorkerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,21 +27,65 @@ public class EmployeeController {
 
 //    private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
-    @Autowired
-    private EmployeeService employeeService;
+//    @Autowired
+//    private EmployeeService employeeService;
+//
+//    @PostMapping("/post")
+//    public ResponseEntity<Employee> createProfile(@RequestBody EmployeeProfileDto empProfile) {
+//        Employee employee = employeeService.createProfile(empProfile);
+//        return ResponseEntity.ok(employee);
+//    }
 
-    @PostMapping("/post")
-    public ResponseEntity<Employee> createProfile(@RequestBody EmployeeProfileDto empProfile) {
-        Employee employee = employeeService.createProfile(empProfile);
-        return ResponseEntity.ok(employee);
+//    @Autowired
+//    private EmployeeService employerService;
+//
+//    @PostMapping("/shortlist")
+//    public ShortlistedDto shortlistWorker(@RequestBody Shortlisted request) {
+//        return employerService.shortlistWorker(request);
+//    }
+//    private final WorkerService jobService;
+//
+//    public EmployeeController(WorkerService jobService) {
+//        this.jobService = jobService;
+//    }
+//
+//    @PostMapping("/post")
+//    public Job postJob(@RequestBody Job job) {
+//        return jobService.postJob(job);
+//    }
+    private final JobService jobService;
+
+    public EmployeeController(JobService jobService) {
+        this.jobService = jobService;
     }
 
-    @Autowired
-    private EmployeeService employerService;
+    @PostMapping
+    public ResponseEntity<Job> createJob(@RequestBody Job job) {
+        Job createdJob = jobService.createJob(job);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdJob);
+    }
 
-    @PostMapping("/shortlist")
-    public ShortlistedDto shortlistWorker(@RequestBody Shortlisted request) {
-        return employerService.shortlistWorker(request);
+    @GetMapping("/{jobId}")
+    public ResponseEntity<Job> getJob(@PathVariable String jobId) {
+        return jobService.getJobById(jobId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    public List<Job> getAllJobs() {
+        return jobService.getAllJobs();
+    }
+
+    @GetMapping("/employer/{employerId}")
+    public List<Job> getJobsByEmployer(@PathVariable String employerId) {
+        return jobService.getJobsByEmployer(employerId);
+    }
+
+    @DeleteMapping("/{jobId}")
+    public ResponseEntity<Void> deleteJob(@PathVariable String jobId) {
+        jobService.deleteJob(jobId);
+        return ResponseEntity.noContent().build();
     }
 
 //    @PostMapping("/post")
@@ -47,17 +95,6 @@ public class EmployeeController {
 
 
 
-    @GetMapping
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployeesWithShiftTimings();
-    }
-
-
-
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
-        return employeeService.getEmployeeById(id);
-    }
 
 //
 //    @PostMapping("/post")

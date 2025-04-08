@@ -17,23 +17,23 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    public Employee createProfile(EmployeeProfileDto employeeProfileDto) {
-        Employee employee = new Employee();
-        employee.setLocation(employeeProfileDto.getLocation());
-        employee.setPayRate(employeeProfileDto.getPayRate());
-        employee.setJobDate(employeeProfileDto.getJobDate());
-        employee.setJobTitle(employeeProfileDto.getJobTitle());
-        employee.setJobDescription(employeeProfileDto.getJobDescription());
-        employee.setSkillsRequired(employeeProfileDto.getSkillsRequired());
-        ShiftTimings shiftTimings = new ShiftTimings();
-        shiftTimings.setStartTime(employeeProfileDto.getShiftTimings().getStartTime());
-        shiftTimings.setEndTime(employeeProfileDto.getShiftTimings().getEndTime());
-        employee.setShiftTimings(shiftTimings);
-        return employeeRepository.save(employee);
-    }
+//    @Autowired
+//    private EmployeeRepository employeeRepository;
+//
+//    public Employee createProfile(EmployeeProfileDto employeeProfileDto) {
+//        Employee employee = new Employee();
+//        employee.setLocation(employeeProfileDto.getLocation());
+//        employee.setPayRate(employeeProfileDto.getPayRate());
+//        employee.setJobDate(employeeProfileDto.getJobDate());
+//        employee.setJobTitle(employeeProfileDto.getJobTitle());
+//        employee.setJobDescription(employeeProfileDto.getJobDescription());
+//        employee.setSkillsRequired(employeeProfileDto.getSkillsRequired());
+//        ShiftTimings shiftTimings = new ShiftTimings();
+//        shiftTimings.setStartTime(employeeProfileDto.getShiftTimings().getStartTime());
+//        shiftTimings.setEndTime(employeeProfileDto.getShiftTimings().getEndTime());
+//        employee.setShiftTimings(shiftTimings);
+//        return employeeRepository.save(employee);
+//    }
 
     @Autowired
     private ShortlistedRepository shortlistedWorkerRepository;
@@ -73,11 +73,11 @@ public class EmployeeService {
 //        return employeeRepository.save(employee);
 //    }
 
-    public List<Employee> getAllEmployeesWithShiftTimings() {
-        return employeeRepository.findAll();
-    }
-
-    public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id).orElse(null);
-    }
+//    public List<Employee> getAllEmployeesWithShiftTimings() {
+//        return employeeRepository.findAll();
+//    }
+//
+//    public Employee getEmployeeById(Long id) {
+//        return employeeRepository.findById(id).orElse(null);
+//    }
 }

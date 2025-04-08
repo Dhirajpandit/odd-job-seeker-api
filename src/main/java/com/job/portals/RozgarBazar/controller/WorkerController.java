@@ -1,4 +1,6 @@
 package com.job.portals.RozgarBazar.controller;
+import com.job.portals.RozgarBazar.dto.Shortlisted;
+import com.job.portals.RozgarBazar.entity.Worker;
 import com.job.portals.RozgarBazar.model.*;
 import com.job.portals.RozgarBazar.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +13,33 @@ import java.util.List;
 @RequestMapping("/worker")
 public class WorkerController {
 
+//    @Autowired
+//    private WorkerService jobService;
+//
+//    @GetMapping("/suggestedWorkers")
+//    public List<SuggestedWorkerDto> getSuggestedWorkers(
+//            @RequestParam(required = false) Long id,
+//            @RequestParam(required = false) String skills,
+//            @RequestParam(required = false) String location
+//    ) {
+//        return jobService.getSuggestedWorkers(id, skills, location);
+//    }
     @Autowired
-    private WorkerService jobService;
+    private WorkerService workerService;
 
-    @GetMapping("/suggestedWorkers")
-    public List<SuggestedWorkerDto> getSuggestedWorkers(
-            @RequestParam(required = false) Long id,
-            @RequestParam(required = false) String skills,
-            @RequestParam(required = false) String location
-    ) {
-        return jobService.getSuggestedWorkers(id, skills, location);
+//    @GetMapping("/suggestedWorkers")
+//    public List<Worker> getSuggestedWorkers(
+//            @RequestParam(required = false) String jobId,
+//            @RequestParam(required = false) String employerId,
+//            @RequestParam(required = false) List<String> skills,
+//            @RequestParam(required = false) String location) {
+//        return workerService.findSuggestedWorkers(jobId, employerId, skills, location);
+//    }
+
+    @PostMapping("/shortlist")
+    public String shortlistWorker(@RequestBody Shortlisted shortlist) {
+        // Implementation would save to database
+        return "Worker shortlisted";
     }
 
     

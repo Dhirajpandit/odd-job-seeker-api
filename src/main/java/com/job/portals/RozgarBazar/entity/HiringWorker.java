@@ -1,33 +1,32 @@
 package com.job.portals.RozgarBazar.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
-import java.time.LocalDateTime;
 
-@Data
+import java.util.Date;
+
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-public class HiringWorker {
-
+@Table(name = "hiring_records")
+@Data
+public class HiringWorker{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "Employer_id", referencedColumnName = "employer_id")
     private Long employerId;
 
-    @ManyToOne
-    @JoinColumn(name = "job_id")
-    private BatchProperties.Job job;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "Worker_id", referencedColumnName = "id")
+//    private Worker workerId;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "job_id", referencedColumnName = "id")
+//    private Job jobId;
 
-    @ManyToOne
-    @JoinColumn(name = "worker_id")
-    private Worker worker;
-
-    private LocalDateTime hireDate;
-    private Boolean active;
+    private Date hireDate;
+    
 }
