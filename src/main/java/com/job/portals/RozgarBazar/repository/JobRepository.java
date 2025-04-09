@@ -17,7 +17,7 @@ public interface JobRepository extends JpaRepository<Job, Long> {
 
     public default Job save(Job job) {
         if (job.getJobId() == null) {
-            job.setJobId(Long.valueOf(UUID.randomUUID().toString()));
+            job.setJobId((UUID.randomUUID().toString()));
         }
         jobs.put(String.valueOf(job.getJobId()), job);
         return job;
@@ -33,7 +33,7 @@ public interface JobRepository extends JpaRepository<Job, Long> {
                 .collect(Collectors.toList());
     }
 
-    public default void delete(String jobId) {
+    public default void deleteById(String jobId) {
         jobs.remove(jobId);
     }
 //    boolean existsById(Long id);

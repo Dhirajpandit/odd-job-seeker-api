@@ -17,7 +17,7 @@ public class HiringWorker{
 //
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "Employer_id", referencedColumnName = "employer_id")
-    private Long employerId;
+//    private Long employerId;
 
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "Worker_id", referencedColumnName = "id")

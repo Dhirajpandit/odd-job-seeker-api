@@ -2,10 +2,12 @@ package com.job.portals.RozgarBazar.service;
 
 import com.job.portals.RozgarBazar.entity.Job;
 import com.job.portals.RozgarBazar.repository.JobRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class JobService {
     private final JobRepository jobRepository;
 
@@ -30,6 +32,6 @@ public class JobService {
     }
 
     public void deleteJob(String jobId) {
-        jobRepository.deleteById(Long.valueOf(jobId));
+        jobRepository.deleteById(jobId);
     }
 }
