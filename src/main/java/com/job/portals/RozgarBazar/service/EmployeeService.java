@@ -1,14 +1,14 @@
 package com.job.portals.RozgarBazar.service;
 
-import com.job.portals.RozgarBazar.entity.Employee;
-import com.job.portals.RozgarBazar.entity.ShiftTimings;
-import com.job.portals.RozgarBazar.model.EmployeeProfile;
-import com.job.portals.RozgarBazar.model.EmployeeProfileDto;
-import com.job.portals.RozgarBazar.repository.EmployeeRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.job.portals.RozgarBazar.entity.Employee;
+import com.job.portals.RozgarBazar.entity.ShiftTimings;
+import com.job.portals.RozgarBazar.model.EmployeeProfileDto;
+import com.job.portals.RozgarBazar.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {

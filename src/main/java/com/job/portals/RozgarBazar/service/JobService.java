@@ -41,13 +41,4 @@ public class JobService {
                 job.getShiftTimings()
         );
     }
-
-    public void applyForJob(Long jobId, Long workerId, String note) {
-        System.out.println("Applying for Job ID: " + jobId + " by Worker ID: " + workerId + " with note: " + note);
-    }
-
-    public void instantAccept(Long jobId, Long workerId, boolean instantAcceptance) {
-        System.out.println("Instant Job Acceptance: " + instantAcceptance +
-                " for Job ID: " + jobId + " by Worker ID: " + workerId);
-    }
 }

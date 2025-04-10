@@ -1,15 +1,17 @@
 package com.job.portals.RozgarBazar.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.job.portals.RozgarBazar.dto.UserDto;
 import com.job.portals.RozgarBazar.entity.User;
 import com.job.portals.RozgarBazar.mapper.UserMapper;
 import com.job.portals.RozgarBazar.repository.UserRepository;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
