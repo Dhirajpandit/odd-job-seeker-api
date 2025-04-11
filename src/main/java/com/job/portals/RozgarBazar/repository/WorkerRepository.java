@@ -44,6 +44,13 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
                 .findFirst();
     }
 
+    @Query("SELECT w FROM Worker w WHERE " +
+            "(:location IS NULL OR w.location = :location) AND " +
+            "(:skills IS NULL OR EXISTS (SELECT 1 FROM w.skills s WHERE s IN :skills))")
+    List<Worker> findSuggestedWorkers(
+            @Param("location") String location,
+            @Param("skills") List<String> skills);
+
 //    public default List<Worker> findBySkillsAndLocation(List<String> skills, String location) {
 //        return workers.stream()
 //                .filter(w -> location == null || w.getLocation().equalsIgnoreCase(location))

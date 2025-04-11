@@ -21,12 +21,6 @@ public class WorkerService {
 //        return new WorkerProfile();
 //    }
 //
-//    public WorkerProfile createOrUpdateProfile(WorkerProfileDto profileDto) {
-//
-//        /*return new WorkerProfile(null,"John Doe", "john.doe@example.com", Arrays.asList("Java", "Spring Boot"), true,"Pune",
-//                Arrays.asList(new Experience("Qloudx","2022","2026","Pune","412207")));*/
-//        return new WorkerProfile();
-//    }
 //
 //    public EmployeeProfile getEmployeeProfile() {
 //        // Mock implementation for getting the profile
@@ -78,11 +72,25 @@ public class WorkerService {
 //    }
 
 
-    @Autowired
     private final WorkerRepository workerRepository;
+    private final JobRepository jobRepository;
 
-    public WorkerService(WorkerRepository workerRepository) {
+    public WorkerService(WorkerRepository workerRepository, JobRepository jobRepository) {
         this.workerRepository = workerRepository;
+        this.jobRepository = jobRepository;
+    }
+
+    public List<Worker> getSuggestedWorkers(String jobId, String employerId, List<String> skills, String location) {
+        // If jobId is provided, get criteria from the job
+        if (jobId != null) {
+            Job job = jobRepository.findById(jobId)
+                    .orElseThrow(() -> new RuntimeException("Job not found"));
+
+            if (skills == null) skills = job.getSkillsRequired();
+            if (location == null) location = job.getLocation();
+        }
+
+        return workerRepository.findSuggestedWorkers(location, skills);
     }
 
 //    public List<Worker> findSuggestedWorkers(/* parameters */) {

@@ -1,5 +1,6 @@
 package com.job.portals.RozgarBazar.model;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkerProfileDto {
+    private Long WorkerId;
     private String name;
-    private String mobileNumber;
-    private List<String> skills;
-    private Boolean availability;
-    private String address;
-    private List<Experience> experience;
-
+    private Double rating;
+    private String skills;
 
 }

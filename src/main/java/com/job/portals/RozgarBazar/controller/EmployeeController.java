@@ -5,6 +5,7 @@ import com.job.portals.RozgarBazar.dto.Shortlisted;
 import com.job.portals.RozgarBazar.dto.ShortlistedDto;
 import com.job.portals.RozgarBazar.entity.Employee;
 import com.job.portals.RozgarBazar.entity.Job;
+import com.job.portals.RozgarBazar.entity.Worker;
 import com.job.portals.RozgarBazar.model.EmployeeProfile;
 import com.job.portals.RozgarBazar.model.EmployeeProfileDto;
 import com.job.portals.RozgarBazar.model.WorkerProfile;
@@ -55,10 +56,6 @@ public class EmployeeController {
 //    }
     private final JobService jobService;
 
-    public EmployeeController(JobService jobService) {
-        this.jobService = jobService;
-    }
-
     @PostMapping
     public ResponseEntity<Job> createJob(@RequestBody Job job) {
         Job createdJob = jobService.createJob(job);
@@ -86,6 +83,34 @@ public class EmployeeController {
     public ResponseEntity<Void> deleteJob(@PathVariable String jobId) {
         jobService.deleteJob(jobId);
         return ResponseEntity.noContent().build();
+    }
+
+    private final WorkerService workerService;
+
+    @Autowired
+    public EmployeeController(JobService jobService, WorkerService workerService) {
+        this.jobService = jobService;
+        this.workerService = workerService;
+    }
+
+    @GetMapping("/suggestedWorkers")
+    public ResponseEntity<List<Worker>> getSuggestedWorkers(
+            @RequestParam(required = false) String jobId,
+            @RequestParam(required = false) String employerId,
+            @RequestParam(required = false) List<String> skills,
+            @RequestParam(required = false) String location) {
+
+        List<Worker> workers = workerService.getSuggestedWorkers(jobId, employerId, skills, location);
+        return ResponseEntity.ok(workers);
+    }
+
+    private WorkerProfileDto convertToWorkerResponse(Worker worker) {
+        return new WorkerProfileDto(
+                worker.getWorkerId(),
+                worker.getName(),
+                worker.getRating(),
+                worker.getSkills()
+        );
     }
 
 //    @PostMapping("/post")
