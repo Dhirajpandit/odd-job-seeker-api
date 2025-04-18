@@ -49,7 +49,7 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
             "(:skills IS NULL OR EXISTS (SELECT 1 FROM w.skills s WHERE s IN :skills))")
     List<Worker> findSuggestedWorkers(
             @Param("location") String location,
-            @Param("skills") List<String> skills);
+            @Param("skills") Set<String> skills);
 
 //    public default List<Worker> findBySkillsAndLocation(List<String> skills, String location) {
 //        return workers.stream()

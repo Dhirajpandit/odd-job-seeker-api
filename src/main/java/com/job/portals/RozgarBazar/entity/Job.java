@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -29,7 +30,7 @@ public class Job {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shifttiming_id", referencedColumnName = "id")
     private ShiftTimings shiftTimings; // Work hours
-    private List<String> skillsRequired; // Needed skills
+    private Set<String> skillsRequired; // Needed skills
     private String jobDate;
 
 }

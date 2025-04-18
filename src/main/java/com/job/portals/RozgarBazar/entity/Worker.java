@@ -4,16 +4,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity
 public class Worker {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
     private Long WorkerId;
     @Column(name = "name")
     private String name;
@@ -22,7 +21,7 @@ public class Worker {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "worker_skills", joinColumns = @JoinColumn(name = "worker_id"))
     @Column(name = "skills")
-    private String skills;
+    private Set<String> skills = new HashSet<>();
     @Column(name = "location")
     private String location;
 }

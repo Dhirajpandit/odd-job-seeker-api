@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -80,7 +82,7 @@ public class WorkerService {
         this.jobRepository = jobRepository;
     }
 
-    public List<Worker> getSuggestedWorkers(String jobId, String employerId, List<String> skills, String location) {
+    public List<Worker> getSuggestedWorkers(String jobId, String employerId, Set<String> skills, String location) {
         // If jobId is provided, get criteria from the job
         if (jobId != null) {
             Job job = jobRepository.findById(jobId)
@@ -92,6 +94,10 @@ public class WorkerService {
 
         return workerRepository.findSuggestedWorkers(location, skills);
     }
+
+
+
+
 
 //    public List<Worker> findSuggestedWorkers(/* parameters */) {
 //        return workerRepository.findAll().stream()

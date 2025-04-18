@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +18,7 @@ public class WorkerProfile {
     private Long WorkerId;
     private String name;
     private Double rating;
-    private String skills;
+    private Set<String> skills = new HashSet<>();
     private String location;
 
 }

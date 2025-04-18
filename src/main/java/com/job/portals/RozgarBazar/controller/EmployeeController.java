@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/jobs")
@@ -97,7 +98,7 @@ public class EmployeeController {
     public ResponseEntity<List<Worker>> getSuggestedWorkers(
             @RequestParam(required = false) String jobId,
             @RequestParam(required = false) String employerId,
-            @RequestParam(required = false) List<String> skills,
+            @RequestParam(required = false) Set<String> skills,
             @RequestParam(required = false) String location) {
 
         List<Worker> workers = workerService.getSuggestedWorkers(jobId, employerId, skills, location);
