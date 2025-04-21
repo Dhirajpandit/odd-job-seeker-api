@@ -95,10 +95,68 @@ public class WorkerService {
         return workerRepository.findSuggestedWorkers(location, skills);
     }
 
+    public Worker saveWorker(Worker worker) {
+        // Ensure skills are lowercase and trimmed
+        if (worker.getSkills() != null) {
+            Set<String> cleanedSkills = worker.getSkills().stream()
+                    .map(skill -> skill.trim().toLowerCase())
+                    .collect(Collectors.toSet());
+            worker.setSkills(cleanedSkills);
+        }
+        return workerRepository.save(worker);
+    }
+
+    public List<Worker> getAllWorkers() {
+        return workerRepository.findAll();
+    }
 
 
+    public Optional<Worker> getWorkerById(Long workerId) {
+        return workerRepository.findById(workerId);
+    }
 
 
+//    public Set<String> updateSkills(Long workerId, Set<String> newSkills) {
+//        Worker worker = workerRepository.findById(workerId)
+//                .orElseThrow(() -> new ResourceNotFoundException("Worker not found with id: " + workerId));
+//
+//        // Clean and validate skills
+//        Set<String> cleanedSkills = newSkills.stream()
+//                .filter(skill -> skill != null && !skill.trim().isEmpty())
+//                .map(String::trim)
+//                .collect(Collectors.toSet());
+//
+//        if (cleanedSkills.isEmpty()) {
+//            throw new IllegalArgumentException("At least one valid skill must be provided");
+//        }
+//
+//        worker.setSkills(cleanedSkills);
+//        Worker updatedWorker = workerRepository.save(worker);
+//
+//        return updatedWorker.getSkills();
+//    }
+
+
+    public List<Worker> findBySkillAndLocation(String skill, String location) {
+        if (skill == null || skill.trim().isEmpty()) {
+            throw new IllegalArgumentException("Skill parameter is required");
+        }
+
+        String cleanedSkill = skill.trim().toLowerCase();
+        String cleanedLocation = location != null ? location.trim() : null;
+
+        if (cleanedLocation != null && !cleanedLocation.isEmpty()) {
+            return workerRepository.findBySkillsContainingAndLocationIgnoreCase(cleanedSkill, cleanedLocation);
+        } else {
+            return workerRepository.findBySkillsContaining(cleanedSkill);
+        }
+    }
+
+    // Additional helper method
+
+    public boolean workerExists(Long workerId) {
+        return workerRepository.existsById(workerId);
+    }
 //    public List<Worker> findSuggestedWorkers(/* parameters */) {
 //        return workerRepository.findAll().stream()
 //                .filter(worker -> location == null || worker.getLocation().equals(location))

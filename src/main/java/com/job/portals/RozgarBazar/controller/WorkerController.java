@@ -41,34 +41,34 @@ public class WorkerController {
 //        return workerService.findSuggestedWorkers(jobId, employerId, skills, location);
 //    }
 
-//    @PostMapping("/shortlist")
-//    public String shortlistWorker(@RequestBody @Valid Shortlisted shortlist) {
-//        // Implementation would save to database
-//        return "Worker shortlisted";
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<Worker> createWorker(@Valid @RequestBody Worker worker) {
-//        Worker savedWorker = workerService.saveWorker(worker);
-//        return ResponseEntity
-//                .created(URI.create("/workers/" + savedWorker.getWorkerId()))
-//                .body(savedWorker);
-//    }
-//
-//    @GetMapping
-//    public ResponseEntity<List<Worker>> getAllWorkers() {
-//        return ResponseEntity.ok(workerService.getAllWorkers());
-//    }
-//
-//    // 3. Get single worker by ID
-//    @GetMapping("/{workerId}")
-//    public ResponseEntity<Worker> getWorkerById(@PathVariable Long workerId) {
-//        return workerService.getWorkerById(workerId)
-//                .map(ResponseEntity::ok)
-//                .orElse(ResponseEntity.notFound().build());
-//    }
-//
-//    // 4. Update worker skills
+    @PostMapping("/shortlist")
+    public String shortlistWorker(@RequestBody @Valid Shortlisted shortlist) {
+        // Implementation would save to database
+        return "Worker shortlisted";
+    }
+
+    @PostMapping
+    public ResponseEntity<Worker> createWorker(@Valid @RequestBody Worker worker) {
+        Worker savedWorker = workerService.saveWorker(worker);
+        return ResponseEntity
+                .created(URI.create("/workers/" + savedWorker.getWorkerId()))
+                .body(savedWorker);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Worker>> getAllWorkers() {
+        return ResponseEntity.ok(workerService.getAllWorkers());
+    }
+
+    // 3. Get single worker by ID
+    @GetMapping("/{workerId}")
+    public ResponseEntity<Worker> getWorkerById(@PathVariable Long workerId) {
+        return workerService.getWorkerById(workerId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // 4. Update worker skills
 //    @PutMapping("/{workerId}/skills")
 //    public ResponseEntity<Map<String, Object>> updateSkills(
 //            @PathVariable Long workerId,
@@ -82,17 +82,17 @@ public class WorkerController {
 //
 //        return ResponseEntity.ok(response);
 //    }
-//
-//    // 5. Search workers by skill
-//    @GetMapping("/search")
-//    public ResponseEntity<List<Worker>> searchBySkill(
-//            @RequestParam String skill,
-//            @RequestParam(required = false) String location) {
-//
-//        return ResponseEntity.ok(
-//                workerService.findBySkillAndLocation(skill, location)
-//        );
-//    }
+
+    // 5. Search workers by skill
+    @GetMapping("/search")
+    public ResponseEntity<List<Worker>> searchBySkill(
+            @RequestParam String skill,
+            @RequestParam(required = false) String location) {
+
+        return ResponseEntity.ok(
+                workerService.findBySkillAndLocation(skill, location)
+        );
+    }
 
     
 

@@ -51,6 +51,10 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
             @Param("location") String location,
             @Param("skills") Set<String> skills);
 
+    List<Worker> findBySkillsContaining(String skill);
+
+    List<Worker> findBySkillsContainingAndLocationIgnoreCase(String skill, String location);
+
 //    public default List<Worker> findBySkillsAndLocation(List<String> skills, String location) {
 //        return workers.stream()
 //                .filter(w -> location == null || w.getLocation().equalsIgnoreCase(location))

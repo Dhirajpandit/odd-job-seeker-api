@@ -14,11 +14,11 @@ import java.util.List;
 public class EmployeeProfileDto {
     private String employerId;
     private String jobId;
-//    private String jobTitle;
-//    private String jobDescription;
-//    private String location;
-//    private Double payRate;
-//    private ShiftTimings shiftTimings;
-//    private List<String> skillsRequired;
-//    private LocalDate jobDate;
+    private String jobTitle;
+    private String jobDescription;
+    private String location;
+    private Double payRate;
+    private ShiftTimings shiftTimings;
+    private List<String> skillsRequired;
+    private LocalDate jobDate;
 }
