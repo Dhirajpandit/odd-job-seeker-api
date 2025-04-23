@@ -3,7 +3,6 @@ package com.job.portals.RozgarBazar.service;
 import com.job.portals.RozgarBazar.dto.UserDto;
 import com.job.portals.RozgarBazar.entity.User;
 import com.job.portals.RozgarBazar.mapper.UserMapper;
-// import com.job.portals.RozgarBazar.mapper.UserMapper;
 import com.job.portals.RozgarBazar.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

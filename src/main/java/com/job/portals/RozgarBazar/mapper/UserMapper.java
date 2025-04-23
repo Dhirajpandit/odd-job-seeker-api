@@ -6,7 +6,7 @@ import com.job.portals.RozgarBazar.entity.Address;
 import com.job.portals.RozgarBazar.entity.User;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     UserDto userToUserDto(User user);
     User userDtoToUser(UserDto userDto);
