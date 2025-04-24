@@ -26,10 +26,10 @@ public class UserService {
 
     public User createUser(UserDto user) {
         log.info(":::: Created User Method Start ::::");
-        if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
-            log.warn(user.getPhoneNumber()+ " Mobile Number is already exists :::");
-            throw new IllegalArgumentException("Mobile Number is already exists, Please login !");
-        }
+        // if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
+        //     log.warn(user.getPhoneNumber()+ " Mobile Number is already exists :::");
+        //     throw new IllegalArgumentException("Mobile Number is already exists, Please login !");
+        // }
         User userEntity = userMapper.userDtoToUser(user);
         log.info("::: Creating User :::");
         return userRepository.save(userEntity);
