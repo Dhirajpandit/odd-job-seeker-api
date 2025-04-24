@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeProfileDto {
     private String employerId;
+    private String jobId;
     private String jobTitle;
     private String jobDescription;
     private String location;

@@ -3,16 +3,15 @@ package com.job.portals.RozgarBazar.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
-public class ShiftTimings {
+@Entity
+public class ShortlistedEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String startTime;
-    private String endTime;
 
-//    @OneToOne(mappedBy = "shiftTimings")
-//    private Employee employee;
-
+    private Long employerId;
+    private Long jobId;
+    private Long workerId;
 }
