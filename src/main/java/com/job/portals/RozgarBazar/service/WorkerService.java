@@ -1,9 +1,6 @@
 package com.job.portals.RozgarBazar.service;
 
-import com.job.portals.RozgarBazar.model.AvailabilityRequest;
-import com.job.portals.RozgarBazar.model.LeaveRequest;
-import com.job.portals.RozgarBazar.model.WorkerProfile;
-import com.job.portals.RozgarBazar.model.WorkerProfileDto;
+import com.job.portals.RozgarBazar.model.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +18,18 @@ public class WorkerService {
         /*return new WorkerProfile(null,"John Doe", "john.doe@example.com", Arrays.asList("Java", "Spring Boot"), true,"Pune",
                 Arrays.asList(new Experience("Qloudx","2022","2026","Pune","412207")));*/
         return new WorkerProfile();
+    }
+
+    public EmployeeProfile getEmployeeProfile() {
+        // Mock implementation for getting the profile
+        /*return new WorkerProfile(null,"John Doe", "john.doe@example.com", Arrays.asList("Java", "Spring Boot"), true,"Pune",
+                Arrays.asList(new Experience("Qloudx","2022","2026","Pune","412207")));*/
+        return new EmployeeProfile();
+    }
+
+    public EmployeeProfile createProfile(EmployeeProfileDto employeeProfileDto) {
+
+        return new EmployeeProfile();
     }
 
     public void updateAvailability(AvailabilityRequest availabilityRequest) {
