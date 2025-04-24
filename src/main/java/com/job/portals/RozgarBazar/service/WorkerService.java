@@ -2,15 +2,17 @@ package com.job.portals.RozgarBazar.service;
 
 import com.job.portals.RozgarBazar.entity.Job;
 import com.job.portals.RozgarBazar.entity.Worker;
+import com.job.portals.RozgarBazar.exception.InternalServerException;
+import com.job.portals.RozgarBazar.exception.UserNotFoundException;
+import com.job.portals.RozgarBazar.exception.ValidationException;
 import com.job.portals.RozgarBazar.model.*;
 import com.job.portals.RozgarBazar.repository.JobRepository;
 import com.job.portals.RozgarBazar.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -111,8 +113,28 @@ public class WorkerService {
     }
 
 
-    public Optional<Worker> getWorkerById(Long workerId) {
-        return workerRepository.findById(workerId);
+//    public Optional<Worker> getWorkerById(Long workerId) {
+//        return workerRepository.findById(workerId);
+//    }
+
+    public Worker getWorkerById(Long workerId) {
+        return workerRepository.findById(workerId)
+                .orElseThrow(() -> new UserNotFoundException(workerId));
+    }
+
+    public Worker createWorker(Worker worker) {
+        // Validate skills (your @ElementCollection field)
+        if (worker.getSkills() == null || worker.getSkills().isEmpty()) {
+            Map<String, String> errors = new HashMap<>();
+            errors.put("skills", "At least one skill is required");
+            throw new ValidationException(errors);
+        }
+
+        try {
+            return workerRepository.save(worker);
+        } catch (DataAccessException ex) {
+            throw new InternalServerException("Failed to save worker to database", ex);
+        }
     }
 
 

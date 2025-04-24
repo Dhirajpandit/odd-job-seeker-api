@@ -62,10 +62,9 @@ public class WorkerController {
 
     // 3. Get single worker by ID
     @GetMapping("/{workerId}")
-    public ResponseEntity<Worker> getWorkerById(@PathVariable Long workerId) {
-        return workerService.getWorkerById(workerId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Worker> getWorker(@PathVariable Long workerId) {
+        Worker worker = workerService.getWorkerById(workerId);
+        return ResponseEntity.ok(worker);
     }
 
     // 4. Update worker skills
