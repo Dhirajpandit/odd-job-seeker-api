@@ -3,6 +3,8 @@ package com.job.portals.RozgarBazar.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.List;
 import java.util.Set;
@@ -33,4 +35,24 @@ public class Job {
     private Set<String> skillsRequired; // Needed skills
     private String jobDate;
 
+
+
+
+    private String id;
+
+    private String title;
+    private String description;
+
+    @ElementCollection
+    private List<String> appliedWorkerIds = new ArrayList<>();
+
+    // getters, setters
 }
+
+//
+//@Entity
+//public class Job {
+//
+//    @Id
+//
+//}

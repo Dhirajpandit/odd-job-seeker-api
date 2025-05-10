@@ -35,6 +35,6 @@ public class EmailService {
     // PostConstruct is used to send a test email when application starts (for testing purposes)
     @PostConstruct
     public void testEmail() {
-        sendEmail("pratik.saraiyya@gmail.com", "Test Email", "This is just a test from Spring Boot.");
+        sendEmail("pratik.saraiyya@gmail.com", "Test Email", "Someone started our project.");
     }
 }

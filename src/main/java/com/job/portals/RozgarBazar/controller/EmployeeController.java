@@ -80,6 +80,15 @@ public class EmployeeController {
         return jobService.getJobsByEmployer(employerId);
     }
 
+    @PostMapping("/apply")
+    public ResponseEntity<String> applyToJob(
+            @RequestParam String jobId,
+            @RequestParam String workerId) {
+
+        jobService.applyToJob(jobId, workerId);
+        return ResponseEntity.ok("Applied successfully");
+    }
+
     @DeleteMapping("/{jobId}")
     public ResponseEntity<Void> deleteJob(@PathVariable String jobId) {
         jobService.deleteJob(jobId);

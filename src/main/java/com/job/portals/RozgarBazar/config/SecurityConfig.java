@@ -39,7 +39,7 @@
 //         return new CustomOAuth2UserService();
 //     }*/
 // }
-=======
+
 //package com.job.portals.RozgarBazar.config;
 //
 //import com.job.portals.RozgarBazar.service.CustomOAuth2UserService;

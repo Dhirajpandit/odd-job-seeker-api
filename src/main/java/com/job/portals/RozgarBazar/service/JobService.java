@@ -34,4 +34,27 @@ public class JobService {
     public void deleteJob(String jobId) {
         jobRepository.deleteById(jobId);
     }
+
+
+//    @Autowired
+//    public JobService(JobRepository jobRepository) {
+//        this.jobRepository = jobRepository;
+//    }
+
+    public void applyToJob(String jobId, String workerId) {
+        Job job = jobRepository.findById(jobId)
+                .orElseThrow(() -> new RuntimeException("Job not found"));
+
+        // Example: maybe maintain a list of workerIds inside Job entity
+        job.getAppliedWorkerIds().add(workerId);
+
+        jobRepository.save(job);
+    }
 }
+//@Service
+//public class JobService {
+//
+//    private final JobRepository jobRepository;
+//
+//
+//}
