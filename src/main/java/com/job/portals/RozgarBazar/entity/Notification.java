@@ -1,14 +1,9 @@
 package com.job.portals.RozgarBazar.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.util.Date;
 
 @Entity
@@ -18,9 +13,11 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     @NotNull
     private Long userId;
 
+    @Column(nullable = false)
     @NotNull
     private String message;
 
@@ -30,8 +27,11 @@ public class Notification {
 
     private boolean read = false;
 
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    @Column(updatable = false)
+    private Date createdAt;
+
 
     // Getters and Setters
     public Long getId() {

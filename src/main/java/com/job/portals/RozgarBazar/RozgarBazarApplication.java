@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //}
 //)
 //@EnableJpaRepositories(basePackages = "com.job.portals.RozgarBazar.repository")
+@EntityScan("com.job.portals.RozgarBazar.entity")
 public class RozgarBazarApplication {
 
 	public static void main(String[] args) {
