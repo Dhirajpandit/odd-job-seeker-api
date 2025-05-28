@@ -5,6 +5,7 @@ import com.job.portals.RozgarBazar.entity.Worker;
 import com.job.portals.RozgarBazar.exception.InternalServerException;
 import com.job.portals.RozgarBazar.exception.UserNotFoundException;
 import com.job.portals.RozgarBazar.exception.ValidationException;
+import com.job.portals.RozgarBazar.exception.WorkerNotFoundException;
 import com.job.portals.RozgarBazar.model.*;
 import com.job.portals.RozgarBazar.repository.JobRepository;
 import com.job.portals.RozgarBazar.repository.WorkerRepository;
@@ -88,7 +89,8 @@ public class WorkerService {
         // If jobId is provided, get criteria from the job
         if (jobId != null) {
             Job job = jobRepository.findById(jobId)
-                    .orElseThrow(() -> new RuntimeException("Job not found"));
+                    .orElseThrow(() -> new RuntimeException("Job not found with ID: " + jobId));
+
 
             if (skills == null) skills = job.getSkillsRequired();
             if (location == null) location = job.getLocation();
@@ -133,8 +135,9 @@ public class WorkerService {
         try {
             return workerRepository.save(worker);
         } catch (DataAccessException ex) {
-            throw new InternalServerException("Failed to save worker to database", ex);
+            throw new InternalServerException("Failed to save worker", ex);
         }
+
     }
 
 
@@ -161,7 +164,7 @@ public class WorkerService {
 
     public List<Worker> findBySkillAndLocation(String skill, String location) {
         if (skill == null || skill.trim().isEmpty()) {
-            throw new IllegalArgumentException("Skill parameter is required");
+            throw new WorkerNotFoundException("Skill parameter is required");
         }
 
         String cleanedSkill = skill.trim().toLowerCase();

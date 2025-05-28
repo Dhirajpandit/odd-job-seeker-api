@@ -62,13 +62,13 @@ public class EmployeeService {
 //        // Save the employee
 //
 //        // Save the shift timings
-////        List<ShiftTimings> shiftTimings = employee.getShiftTimings();
-////        if (shiftTimings != null) {
-////            for (ShiftTimings shift : shiftTimings) {
-////                shift.setEmployee(savedEmployee);
-////                ShiftTimingsRepository.save(shift);
-////            }
-////        }
+//   //     List<ShiftTimings> shiftTimings = employee.getShiftTimings();
+//        if (shiftTimings != null) {
+//            for (ShiftTimings shift : shiftTimings) {
+//                shift.setEmployee(savedEmployee);
+//                ShiftTimingsRepository.save(shift);
+//            }
+//        }
 //
 //        return employeeRepository.save(employee);
 //    }

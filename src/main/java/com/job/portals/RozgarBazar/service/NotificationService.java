@@ -5,6 +5,7 @@ import com.job.portals.RozgarBazar.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.job.portals.RozgarBazar.exception.NotificationNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,16 +35,21 @@ public class NotificationService {
 
     @Transactional
     public Optional<Notification> markNotificationAsRead(Long id) {
-        Optional<Notification> notification = notificationRepository.findById(id);
-        notification.ifPresent(n -> {
-            n.setRead(true);
-            notificationRepository.save(n);
-        });
-        return notification;
+        Optional<Notification> optionalNotification = notificationRepository.findById(id);
+
+        if (optionalNotification.isEmpty()) {
+            throw new NotificationNotFoundException("Notification not found with ID: " + id);
+        }
+
+        Notification notification = optionalNotification.get();
+        notification.setRead(true);
+        notificationRepository.save(notification);
+
+        return Optional.of(notification);
     }
 
     public Notification getNotificationById(Long id) {
         return notificationRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Notification not found with ID: " + id));
+                .orElseThrow(() -> new NotificationNotFoundException("Notification not found with ID: " + id));
     }
 }

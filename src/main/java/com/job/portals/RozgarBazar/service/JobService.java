@@ -36,11 +36,6 @@ public class JobService {
     }
 
 
-//    @Autowired
-//    public JobService(JobRepository jobRepository) {
-//        this.jobRepository = jobRepository;
-//    }
-
     public void applyToJob(String jobId, String workerId) {
         Job job = jobRepository.findById(jobId)
                 .orElseThrow(() -> new RuntimeException("Job not found"));
@@ -51,6 +46,14 @@ public class JobService {
         jobRepository.save(job);
     }
 }
+
+
+
+
+//    @Autowired
+//    public JobService(JobRepository jobRepository) {
+//        this.jobRepository = jobRepository;
+//    }
 //@Service
 //public class JobService {
 //

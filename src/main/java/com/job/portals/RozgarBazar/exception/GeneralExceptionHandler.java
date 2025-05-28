@@ -48,10 +48,27 @@ public class GeneralExceptionHandler {
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", new Date());
         response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
-        response.put("error", "Internal Server Error");
+        response.put("error", "Internal Server Error (null pointrrs,API call failed,DB corruption, etc.)");
         response.put("message", ex.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    // Handle Notification Not Found
+    @ExceptionHandler(NotificationNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleNotificationNotFound(NotificationNotFoundException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", new Date());
+        response.put("status", HttpStatus.NOT_FOUND.value());
+        response.put("error", "Notification Not Found");
+        response.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+    //  if review not found or deleted or not store in database
+    @ExceptionHandler (ReviewNotFoundException.class)
+    public ResponseEntity<String> handleReviewNotFound(ReviewNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 
     //  Catch-all handler
@@ -65,4 +82,7 @@ public class GeneralExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
+
 }

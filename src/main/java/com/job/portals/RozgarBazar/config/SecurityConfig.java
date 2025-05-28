@@ -97,7 +97,6 @@
 
 
 
-
 package com.job.portals.RozgarBazar.config;
 
 import org.springframework.context.annotation.Bean;
@@ -114,7 +113,10 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/otp/**").permitAll()  // Allow OTP APIs
+                    .requestMatchers("/api/**","/api/otp/**","/api/auth/**",
+                            "/api/notifications/**",
+                            "/api/jobs/public/**"
+                    ).permitAll()  // Allow OTP APIs
                     .anyRequest().authenticated()
                 )
                 .formLogin(AbstractHttpConfigurer::disable); // Disable default login page
@@ -126,7 +128,7 @@ public class SecurityConfig {
 
 
 
-// this is use for otp login  we will use this code when login was start
+// this is use for otp login/logout  we will use this code when login was start
 
 
 
