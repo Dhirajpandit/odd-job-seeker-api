@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column (nullable = true)
     private String email;
 
     @Column(nullable = true)
@@ -35,8 +36,9 @@ public class User {
     @Enumerated(EnumType.STRING) // Store as ENUM string
     private AccountType accountType; // EMPLOYER or JOB_SEEKER
 
-    @Column(nullable = true,unique = true) // Optional
+    @Column(nullable = false,unique = true) // Optional
     private String phoneNumber;
+    private LocalDateTime createdAt;
 
     @Column(nullable = true)
     private String companyName; // Relevant for employers
@@ -47,8 +49,16 @@ public class User {
     @Column(name = "is_active", nullable = true)
     private Boolean isActive = true;
 
-    @Column(name = "is_verified", nullable = true)
-    private Boolean isVerified = false;
+    public Boolean getMobileVerified() {
+        return mobileVerified;
+    }
+
+    public void setMobileVerified(Boolean mobileVerified) {
+        this.mobileVerified = mobileVerified;
+    }
+
+    @Column(name = "mobile_Verified", nullable = true)
+    private Boolean mobileVerified = false;
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_id")
@@ -57,4 +67,5 @@ public class User {
     @Column(nullable = true)
     @Enumerated(EnumType.STRING)
     private OnboardingStatus onboardingStatus;
+
 }

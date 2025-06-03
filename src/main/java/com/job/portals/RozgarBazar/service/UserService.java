@@ -22,18 +22,30 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-
-
     public User createUser(UserDto user) {
         log.info(":::: Created User Method Start ::::");
-        // if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
-        //     log.warn(user.getPhoneNumber()+ " Mobile Number is already exists :::");
-        //     throw new IllegalArgumentException("Mobile Number is already exists, Please login !");
-        // }
+
+        // Validate email before doing anything else
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email must not be null or empty");
+        }
+
         User userEntity = userMapper.userDtoToUser(user);
         log.info("::: Creating User :::");
         return userRepository.save(userEntity);
     }
+
+
+//    public User createUser(UserDto user) {
+//        log.info(":::: Created User Method Start ::::");
+//        // if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
+//        //     log.warn(user.getPhoneNumber()+ " Mobile Number is already exists :::");
+//        //     throw new IllegalArgumentException("Mobile Number is already exists, Please login !");
+//        // }
+//        User userEntity = userMapper.userDtoToUser(user);
+//        log.info("::: Creating User :::");
+//        return userRepository.save(userEntity);
+//    }
 
     public User getUserById(Long id) {
         return userRepository.findById(id)
@@ -70,4 +82,9 @@ public class UserService {
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-}
+        public boolean setMobileVerified (String phoneNumber){
+            int rowsUpdated = userRepository.verifyMobileByPhoneNumber(phoneNumber);
+            return rowsUpdated > 0;
+        }
+    }
+

@@ -82,49 +82,99 @@
 //    }*/
 //}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package com.job.portals.RozgarBazar.config;
 
+import com.job.portals.RozgarBazar.service.CustomOAuth2UserService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@RequiredArgsConstructor
+@Slf4j
 public class SecurityConfig {
 
+    private final CustomOAuth2UserService customOAuth2UserService;
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        log.info(":::::: Initializing Security Filter Chain :::::");
+
         http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.disable()) // Disable CSRF for REST APIs
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/**","/api/otp/**","/api/auth/**",
-                            "/api/notifications/**",
-                            "/api/jobs/public/**"
-                    ).permitAll()  // Allow OTP APIs
-                    .anyRequest().authenticated()
+                        .requestMatchers(
+                                "/api/**",
+                                "/api/otp/**",
+                                "/api/auth/**",
+                                "/api/notifications/**",
+                                "/api/jobs/public/**",
+                                "/oauth2/**",        // Google OAuth2 redirect
+                                "/login/**",
+
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"// Any login-related pages
+                        ).permitAll()
+                        .anyRequest().authenticated()
                 )
-                .formLogin(AbstractHttpConfigurer::disable); // Disable default login page
+                .formLogin(form -> form.disable()) // Disable default login form
+                .oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(userInfo ->
+                                userInfo.oidcUserService(customOAuth2UserService) // Google login
+                        )
+                );
 
         return http.build();
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//package com.job.portals.RozgarBazar.config;
+//
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+//import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+//import org.springframework.security.web.SecurityFilterChain;
+//import org.springframework.context.annotation.Configuration;
+//
+//@Configuration
+//public class SecurityConfig {
+//
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(auth -> auth
+//                    .requestMatchers("/api/**","/api/otp/**","/api/auth/**",
+//                            "/api/notifications/**",
+//                            "/api/jobs/public/**"
+//                    ).permitAll()  // Allow OTP APIs
+//                    .anyRequest().authenticated()
+//                )
+//                .formLogin(AbstractHttpConfigurer::disable); // Disable default login page
+//
+//        return http.build();
+//    }
+//}
+//
 
 
 
