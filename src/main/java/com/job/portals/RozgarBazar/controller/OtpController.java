@@ -1,7 +1,7 @@
 package com.job.portals.RozgarBazar.controller;
 
 import com.job.portals.RozgarBazar.config.JwtUtil;
-import com.job.portals.RozgarBazar.entity.User;
+
 import com.job.portals.RozgarBazar.service.OtpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -43,7 +43,7 @@ public class OtpController {
     }
 
 //
-//        User user = otpService.getOrCreateUser(phoneNumber);
+//        User user = OtpService.getOrCreateUser(phoneNumber);
 //        String token = jwtUtil.generateToken(phoneNumber);
 //
 //        return ResponseEntity.ok(Map.of(

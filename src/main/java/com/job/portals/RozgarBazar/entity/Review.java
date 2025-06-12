@@ -11,8 +11,9 @@ import lombok.*;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private Long id;
+@Column(name = "job_portal_name")
     private String jobPortalName;
     private String reviewer;
     private int rating;

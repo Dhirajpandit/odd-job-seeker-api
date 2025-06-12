@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @GetMapping("/desc")
     public String description(){
-        return "Portal For Daily Weighes Workers";
+        return "Portal For Daily Weighs Workers";
     }
 }

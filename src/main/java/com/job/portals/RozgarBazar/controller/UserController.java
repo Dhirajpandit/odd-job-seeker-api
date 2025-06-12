@@ -39,11 +39,11 @@ public class UserController {
     }
 
     // Update user
-    /*@PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
-        User user = userService.updateUser(id, updatedUser);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }*/
+//    @PutMapping("/{id}")
+//    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+//        User user = userService.updateUser(id, updatedUser);
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 
     // Delete user
     @DeleteMapping("/{id}")

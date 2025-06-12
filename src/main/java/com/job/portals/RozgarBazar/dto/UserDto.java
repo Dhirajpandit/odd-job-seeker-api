@@ -18,4 +18,6 @@ public class UserDto {
     private String companyName;
     private String industry;
     private AddressDto address;
+
+    private Integer profileCompletion;
 }

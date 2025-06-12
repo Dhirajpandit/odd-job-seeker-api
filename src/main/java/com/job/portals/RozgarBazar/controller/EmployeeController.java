@@ -4,14 +4,12 @@ package com.job.portals.RozgarBazar.controller;
 import com.job.portals.RozgarBazar.dto.Shortlisted;
 import com.job.portals.RozgarBazar.dto.ShortlistedDto;
 import com.job.portals.RozgarBazar.entity.Employee;
-import com.job.portals.RozgarBazar.entity.Job;
 import com.job.portals.RozgarBazar.entity.Worker;
 import com.job.portals.RozgarBazar.model.EmployeeProfile;
 import com.job.portals.RozgarBazar.model.EmployeeProfileDto;
 import com.job.portals.RozgarBazar.model.WorkerProfile;
 import com.job.portals.RozgarBazar.model.WorkerProfileDto;
 import com.job.portals.RozgarBazar.service.EmployeeService;
-import com.job.portals.RozgarBazar.service.JobService;
 import com.job.portals.RozgarBazar.service.WorkerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,51 +53,12 @@ public class EmployeeController {
 //    public Job postJob(@RequestBody Job job) {
 //        return jobService.postJob(job);
 //    }
-    private final JobService jobService;
-
-    @PostMapping
-    public ResponseEntity<Job> createJob(@RequestBody Job job) {
-        Job createdJob = jobService.createJob(job);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdJob);
-    }
-
-    @GetMapping("/{jobId}")
-    public ResponseEntity<Job> getJob(@PathVariable String jobId) {
-        return jobService.getJobById(jobId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @GetMapping
-    public List<Job> getAllJobs() {
-        return jobService.getAllJobs();
-    }
-
-    @GetMapping("/employer/{employerId}")
-    public List<Job> getJobsByEmployer(@PathVariable String employerId) {
-        return jobService.getJobsByEmployer(employerId);
-    }
-
-    @PostMapping("/apply")
-    public ResponseEntity<String> applyToJob(
-            @RequestParam String jobId,
-            @RequestParam String workerId) {
-
-        jobService.applyToJob(jobId, workerId);
-        return ResponseEntity.ok("Applied successfully");
-    }
-
-    @DeleteMapping("/{jobId}")
-    public ResponseEntity<Void> deleteJob(@PathVariable String jobId) {
-        jobService.deleteJob(jobId);
-        return ResponseEntity.noContent().build();
-    }
 
     private final WorkerService workerService;
 
     @Autowired
-    public EmployeeController(JobService jobService, WorkerService workerService) {
-        this.jobService = jobService;
+    public EmployeeController(WorkerService workerService) {
+
         this.workerService = workerService;
     }
 
