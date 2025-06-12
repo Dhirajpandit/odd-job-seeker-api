@@ -3,6 +3,8 @@ package com.job.portals.RozgarBazar.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,26 +35,5 @@ public class Job {
     @JoinColumn(name = "shifttiming_id", referencedColumnName = "id")
     private ShiftTimings shiftTimings; // Work hours
     private Set<String> skillsRequired; // Needed skills
-    private String jobDate;
-
-
-
-
-    private String id;
-
-    private String title;
-    private String description;
-
-    @ElementCollection
-    private List<String> appliedWorkerIds = new ArrayList<>();
-
-    // getters, setters
-}
-
-//
-//@Entity
-//public class Job {
-//
-//    @Id
-//
-//}
+    private LocalDate jobDate;  //date
+ }

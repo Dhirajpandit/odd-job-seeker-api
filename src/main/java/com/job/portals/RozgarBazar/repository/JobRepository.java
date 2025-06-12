@@ -13,28 +13,5 @@ import java.util.stream.Collectors;
 
 @Repository
 public interface JobRepository extends JpaRepository<Job, Long> {
-    Map<String, Job> jobs = new ConcurrentHashMap<>();
 
-    public default Job save(Job job) {
-        if (job.getJobId() == null) {
-            job.setJobId((UUID.randomUUID().toString()));
-        }
-        jobs.put(String.valueOf(job.getJobId()), job);
-        return job;
-    }
-
-    public default Optional<Job> findById(String jobId) {
-        return Optional.ofNullable(jobs.get(jobId));
-    }
-
-    public default List<Job> findByEmployerId(String employerId) {
-        return jobs.values().stream()
-                .filter(job -> job.getEmployerId().equals(employerId))
-                .collect(Collectors.toList());
-    }
-
-    public default void deleteById(String jobId) {
-        jobs.remove(jobId);
-    }
-//    boolean existsById(Long id);
 }

@@ -27,34 +27,6 @@ import java.util.Set;
 @RequestMapping("/jobs")
 public class EmployeeController {
 
-//    private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
-
-//    @Autowired
-//    private EmployeeService employeeService;
-//
-//    @PostMapping("/post")
-//    public ResponseEntity<Employee> createProfile(@RequestBody EmployeeProfileDto empProfile) {
-//        Employee employee = employeeService.createProfile(empProfile);
-//        return ResponseEntity.ok(employee);
-//    }
-
-//    @Autowired
-//    private EmployeeService employerService;
-//
-//    @PostMapping("/shortlist")
-//    public ShortlistedDto shortlistWorker(@RequestBody Shortlisted request) {
-//        return employerService.shortlistWorker(request);
-//    }
-//    private final WorkerService jobService;
-//
-//    public EmployeeController(WorkerService jobService) {
-//        this.jobService = jobService;
-//    }
-//
-//    @PostMapping("/post")
-//    public Job postJob(@RequestBody Job job) {
-//        return jobService.postJob(job);
-//    }
     private final JobService jobService;
 
     @PostMapping

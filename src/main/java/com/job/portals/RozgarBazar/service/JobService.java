@@ -20,7 +20,7 @@ public class JobService {
     }
 
     public Optional<Job> getJobById(String jobId) {
-        return jobRepository.findById(jobId);
+        return jobRepository.findById(Long.valueOf(jobId));
     }
 
     public List<Job> getAllJobs() {
@@ -28,22 +28,22 @@ public class JobService {
     }
 
     public List<Job> getJobsByEmployer(String employerId) {
-        return jobRepository.findByEmployerId(employerId);
+        return null;
     }
 
     public void deleteJob(String jobId) {
-        jobRepository.deleteById(jobId);
+        jobRepository.deleteById(Long.valueOf(jobId));
     }
 
 
     public void applyToJob(String jobId, String workerId) {
-        Job job = jobRepository.findById(jobId)
+      /*  Job job = jobRepository.findById(jobId)
                 .orElseThrow(() -> new RuntimeException("Job not found"));
 
         // Example: maybe maintain a list of workerIds inside Job entity
         job.getAppliedWorkerIds().add(workerId);
 
-        jobRepository.save(job);
+        jobRepository.save(job);*/
     }
 }
 

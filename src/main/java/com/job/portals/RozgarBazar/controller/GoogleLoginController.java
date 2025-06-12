@@ -1,3 +1,4 @@
+/*
 
  package com.job.portals.RozgarBazar.controller;
 
@@ -65,3 +66,4 @@
 //        return "User email: " + principal.getEmail();
 //    }
 //
+*/

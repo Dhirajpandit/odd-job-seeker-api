@@ -88,7 +88,7 @@ public class WorkerService {
     public List<Worker> getSuggestedWorkers(String jobId, String employerId, Set<String> skills, String location) {
         // If jobId is provided, get criteria from the job
         if (jobId != null) {
-            Job job = jobRepository.findById(jobId)
+            Job job = jobRepository.findById(Long.valueOf(jobId))
                     .orElseThrow(() -> new RuntimeException("Job not found with ID: " + jobId));
 
 
